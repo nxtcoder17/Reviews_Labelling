@@ -1,0 +1,53 @@
+{% extends "review/base.html" %}
+{% block content %}
+
+    <span id='id' style='display: none;'> {{ review.id }} </span>
+    <span id='sent' style='display: none;'> {{ review.sentiment }} </span>
+    <p class='review'>{{ review.review_text }}</p>
+
+    <label> <input type='radio' name='sentiment'  value='1'> <span id='pos'>POSITIVE</span> </label>
+    <label> <input type='radio' name='sentiment' value='0'> <span id='neu'>NEUTRAL</span> </label>
+    <label> <input type='radio' name='sentiment' value='-1'> <span id='neg'>NEGATIVE</span> </label>
+
+    <center><button id='next_button' data-count = "0">next</button></center>
+
+    <script>
+        $(document).ready (function () {
+            $(document).on('click', '#next_button', function () {
+                var value = $("input[type='radio'][name='sentiment']:checked").val();
+                console.log ("value : " + value);
+                if (value != null) {
+                    $.ajax ({
+                        url: 'submit/',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {'sentiment': value, 'id': document.getElementById('id').innerHTML},
+                        success: function(response) { 
+                            console.log ("AJAX request sent"); 
+                            var count = parseInt($("#next_button").attr("data-count"));
+                            $('.review').html(response['text']);
+                            $('#id').html(response['id']);
+                            $('#sent').html (response['sent']);
+                            $("input[name='sentiment']").prop ("checked", false);
+                            $("#next_button").attr("data-count", (count+1).toString());
+                            if (count + 1 == 7) {
+                                // document.write("Thank You, for taking part in the Review Labelling ....., Bye");
+                                $.ajax ({
+                                    url: "{% url 'thankyou' %}",
+                                    type: "GET",
+                                    success: function(response) { 
+                                        console.log ("Thank You page to be written"); 
+                                        document.write (response);
+                                    },
+                                    error: function () { console.log ("Error in fetching Thank You page"); },
+                                });
+                            }
+                        },
+                        error: function() { console.log ("Ajax Request Failed"); },
+                    });
+                } else
+                    alert ("Please, first READ the review and SELECT a radio button of choice");
+            });
+        });
+    </script>
+{% endblock %}

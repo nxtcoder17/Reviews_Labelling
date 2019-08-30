@@ -1,0 +1,32 @@
+{% extends "review/base.html" %}
+
+{% block content %}
+    <p class='intro_header'><b>We need your help. Categorize our paragraph reviews into Positive, Negative or Neutral categories</b>
+    <p class='intro'>
+    Dear Sir/Madam, <br/></br/>
+    Thank you for visiting our Survey page and helping us in our research. <br/><br/>
+    We are conducting research on Automated Sentiment Analysis by creating a machine learning-based model that uses an advanced sentiment detection to segment positive, negative and neutral mentions. For our research, it is critical that you answer our questions which ask you to rate the reviews into Positive, Negative or Neutral based on your understanding. It will take 8-10 minutes and help our research. 
+    </p>
+
+    <br/>
+    <center><button id='start_button'>Start Now</button></center>
+
+    <script>
+        $(document).ready (function (){
+            $('#start_button').click (function () {
+                $.ajax ({
+                    url: "{% url 'start' %}",
+                    type: "GET", 
+                    success: function (response) { 
+                        $('body').html (response);
+                        /* document.write (response); */
+                        console.log ("Started ..... "); 
+                        // $(document).html (response);
+                    },
+                    error: function () { console.log ("did not start ..... "); },
+                });
+            });
+        });
+    </script>
+{% endblock %}
+
