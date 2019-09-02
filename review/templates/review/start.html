@@ -1,6 +1,6 @@
 {% extends "review/base.html" %}
 {% block content %}
-
+    <p class='review_number' style='float: right'> 1 <b>out of</b> 7 </p><br/><br/>
     <span id='id' style='display: none;'> {{ review.id }} </span>
     <span id='sent' style='display: none;'> {{ review.sentiment }} </span>
     <p class='review'>{{ review.review_text }}</p>
@@ -9,7 +9,7 @@
     <label> <input type='radio' name='sentiment' value='0'> <span id='neu'>NEUTRAL</span> </label>
     <label> <input type='radio' name='sentiment' value='-1'> <span id='neg'>NEGATIVE</span> </label>
 
-    <center><button id='next_button' data-count = "0">next</button></center>
+    <center><button id='next_button' data-count = "1">next</button></center>
 
     <script>
         $(document).ready (function () {
@@ -26,7 +26,7 @@
                             console.log ("AJAX request sent"); 
                             var count = parseInt($("#next_button").attr("data-count"));
                             if (response['id'] == -1) {
-                            // if (count + 1 == 7) {
+                            // if (count + 1 == 8) {
                                 // document.write("Thank You, for taking part in the Review Labelling ....., Bye");
                                 $.ajax ({
                                     url: "{% url 'thankyou' %}",
@@ -43,6 +43,7 @@
                             $('#sent').html (response['sent']);
                             $("input[name='sentiment']").prop ("checked", false);
                             $("#next_button").attr("data-count", (count+1).toString());
+                            $('.review_number').html (String ( (count+1).toString() + ' out of 7'));
                         },
                         error: function() { console.log ("Ajax Request Failed"); },
                     });
