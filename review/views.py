@@ -11,26 +11,26 @@ import random
 def index (request):
     return render (request, 'review/index.html');
 
-count = 0
+# count = 0
 
-def write_log (text):
-    with open("/tmp/app.log", "at") as file:
-        file.write (text + "\n");
+# def write_log (text):
+    # with open("/tmp/app.log", "at") as file:
+        # file.write (text + "\n");
 
-# try:
-    # second = random.sample (list(Review.objects.filter (sentiment=200)), 2);
-# except ValueError:
-    # second = list(Review.objects.filter (sentiment=200))
-# 
-# try:
-    # first = random.sample (list(Review.objects.filter (sentiment=100)), 5 + 2 - len(second));
-# except ValueError:
-    # first = list(Review.objects.filter (sentiment=100))
+try:
+    second = random.sample (list(Review.objects.filter (sentiment=200)), 2);
+except ValueError:
+    second = list(Review.objects.filter (sentiment=200))
+
+try:
+    first = random.sample (list(Review.objects.filter (sentiment=100)), 5 + 2 - len(second));
+except ValueError:
+    first = list(Review.objects.filter (sentiment=100))
 
 
-# target_list = first + second
+target_list = first + second
 
-target_list = random.sample (list(Review.objects.filter(sentiment=100)), 3);
+# target_list = random.sample (list(Review.objects.filter(sentiment=100)), 3);
 random.shuffle (target_list)
 
 iterator = iter (target_list)
