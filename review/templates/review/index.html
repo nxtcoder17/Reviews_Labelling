@@ -18,10 +18,22 @@
                     url: "{% url 'start' %}",
                     type: "GET", 
                     success: function (response) { 
-                        $('body').html (response);
-                        /* document.write (response); */
-                        console.log ("Started ..... "); 
-                        // $(document).html (response);
+                        if (response['id'] == -1) {
+                            $.ajax({
+                                url: "{% url 'thankyou' %}",
+                                type: "GET",
+                                success: function(response) { 
+                                    console.log ("Thank You page to be written"); 
+                                    document.write (response);
+                                },
+                                error: function () { console.log ("Error in fetching Thank You page"); },
+                            });
+                        } else {
+                            $('body').html (response);
+                            /* document.write (response); */
+                            console.log ("Started ..... "); 
+                            // $(document).html (response);
+                        }
                     },
                     error: function () { console.log ("did not start ..... "); },
                 });

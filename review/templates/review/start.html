@@ -25,12 +25,8 @@
                         success: function(response) { 
                             console.log ("AJAX request sent"); 
                             var count = parseInt($("#next_button").attr("data-count"));
-                            $('.review').html(response['text']);
-                            $('#id').html(response['id']);
-                            $('#sent').html (response['sent']);
-                            $("input[name='sentiment']").prop ("checked", false);
-                            $("#next_button").attr("data-count", (count+1).toString());
-                            if (count + 1 == 7) {
+                            if (response['id'] == -1) {
+                            // if (count + 1 == 7) {
                                 // document.write("Thank You, for taking part in the Review Labelling ....., Bye");
                                 $.ajax ({
                                     url: "{% url 'thankyou' %}",
@@ -42,6 +38,11 @@
                                     error: function () { console.log ("Error in fetching Thank You page"); },
                                 });
                             }
+                            $('.review').html(response['text']);
+                            $('#id').html(response['id']);
+                            $('#sent').html (response['sent']);
+                            $("input[name='sentiment']").prop ("checked", false);
+                            $("#next_button").attr("data-count", (count+1).toString());
                         },
                         error: function() { console.log ("Ajax Request Failed"); },
                     });
