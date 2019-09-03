@@ -1,0 +1,66 @@
+:root {
+    font-family: 'Open Sans', 'Noto Sans TC', sans-serif;
+}
+
+p.review {
+    color: black;
+    font-size: 16px;
+}
+
+.intro_header,.intro {
+    margin: 20px;
+}
+
+#start_button,#next_button {
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: antiquewhite;
+    color: black;
+    border: 2px solid black;
+    border-radius: 15px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#start_button:hover,#next_button:hover {
+    background-color: black;
+    color: antiquewhite;
+}
+
+input[type='radio'] {
+    display: inline-block;
+    margin-bottom: 2px;
+}
+
+#pos,#neg,#neu {
+    color: black;
+    background-color: #1cff59;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    /* margin-bottom: 1vw; */
+    border: 1px solid #1cff59;
+    border-radius: 15px;
+
+}
+
+#neg { background-color: #ff0f1f; border-color: #ff0f1f;}
+#neu { background-color: #b8c2c0; border-color: #b8c2c0;}
+
+#next_button {
+    margin-top: 20px;
+}
+/* #next_button { */
+    /* color: black; */
+    /* background-color: dodgerblue; */
+    /* padding-left: 20px; */
+    /* padding-right: 20px; */
+    /* border: 1px solid dodgerblue; */
+    /* border-radius: 50px; */
+    /* margin-top: 15px; */
+    /* font-size: 30px; */
+/* } */
