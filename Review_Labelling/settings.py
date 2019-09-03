@@ -27,7 +27,7 @@ SECRET_KEY = '&(z&vyb#sxdsx@5n)qu4_2$2dp2!qvh-a5u-++558%q&536z(j'
 # DEBUG = True
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '10.0.0.175']
+ALLOWED_HOSTS = ['localhost', '10.0.0.175', 'brightbluebox.com', '159.89.140.43']
 
 
 # Application definition
