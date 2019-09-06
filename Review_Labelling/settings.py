@@ -24,8 +24,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '&(z&vyb#sxdsx@5n)qu4_2$2dp2!qvh-a5u-++558%q&536z(j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = False
+DEBUG = True
+# DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '10.0.0.175', 'brightbluebox.com', '159.89.140.43']
 
@@ -122,3 +122,5 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join (BASE_DIR, "static/")
 STATIC_URL = '/static/'
+
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
